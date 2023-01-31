@@ -393,6 +393,7 @@ public class CalculadoraEstadisticas
 		}
 		return cantidadMedallistas / cantidadAtletas;
 	}
+	
 
 	/**
 	 * Retorna el país con el nombre indicado
@@ -426,6 +427,30 @@ public class CalculadoraEstadisticas
 				elAtleta = atletas.get(i);
 		}
 		return elAtleta;
+	}
+	
+	public String paisPorNombreAtleta(String nombreAtleta)
+	{
+		Pais PaisAtleta = null;
+		
+		for (Pais pais : paises)
+		{
+			List<Map<String, Object>> losAtletas = pais.consultarAtletas();
+			
+			for (Map<String, Object> unAtleta : losAtletas)
+			{
+				if (unAtleta.containsValue(nombreAtleta))
+				{
+					PaisAtleta = pais;
+				}
+			}
+			
+		}
+		if (PaisAtleta == null)
+			return "Indefinido";
+		
+		else
+			return PaisAtleta.darNombre();
 	}
 
 	/**
